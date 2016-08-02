@@ -2,8 +2,6 @@
 <html class="theme-next use-motion theme-next-mist">
 <head>
     
-    
-
 
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -43,13 +41,12 @@
 
 <meta name="description" content="终于能搭建自己的博客，好开森！">
 <meta property="og:type" content="website">
-<meta property="og:title" content="All tags">
-<meta property="og:url" content="http://blog.shixbo.com/tags/index.html">
+<meta property="og:title" content="Bobo’s Notes">
+<meta property="og:url" content="http://blog.shixbo.com/archives/2016/08/index.html">
 <meta property="og:site_name" content="Bobo’s Notes">
 <meta property="og:description" content="终于能搭建自己的博客，好开森！">
-<meta property="og:updated_time" content="2015-09-13T08:20:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="All tags">
+<meta name="twitter:title" content="Bobo’s Notes">
 <meta name="twitter:description" content="终于能搭建自己的博客，好开森！">
 
 
@@ -60,13 +57,7 @@
   };
 </script>
 
-    <title>
-  
-
-  
-    标签 // Bobo’s Notes
-  
-</title>
+    <title> 归档 // Bobo’s Notes </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -82,7 +73,7 @@
 
 
 
-<div class="container one-column ">
+<div class="container one-column  page-archive ">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
         <div class="header-inner"><h1 class="site-meta">
@@ -175,19 +166,59 @@
             <div id="content" class="content">
                 
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 3 篇日志。 继续努力。
+    </span>
+
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 4 个标签
+
+      
+      
+      
+
+      
+        
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/Hexo/" style="font-size: 30px; color: #111">Hexo</a> <a href="/tags/Html/" style="font-size: 12px; color: #ccc">Html</a> <a href="/tags/Markdown/" style="font-size: 12px; color: #ccc">Markdown</a> <a href="/tags/NexT/" style="font-size: 12px; color: #ccc">NexT</a>
-        </div>
+      
+      
+
+      
+
+  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/08/02/ipv6/" itemprop="url">
+              <span itemprop="name">未命名</span>
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" datetime="2016-08-02T14:59:48.000Z" itemprop="dateCreated" content="2016-08-02"> 08-02 </time>
       </div>
+
+    </header>
+  </article>
+
+
+
     
-  </div>
+
+  </section>
+
+  
 
 
             </div>
@@ -321,6 +352,12 @@
   
   
   
+    <script type="text/javascript">
+      postMotionOptions = {stagger: 100, drag: true};
+    </script>
+  
+
+  
     
 
   
@@ -363,6 +400,12 @@
 
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
+
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
 <script type="text/javascript">

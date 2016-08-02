@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.shixbo.com/"/>
-  <updated>2015-09-13T14:24:53.000Z</updated>
+  <updated>2016-08-02T14:59:48.000Z</updated>
   <id>http://blog.shixbo.com/</id>
   
   <author>
@@ -13,6 +13,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://blog.shixbo.com/2016/08/02/ipv6/"/>
+    <id>http://blog.shixbo.com/2016/08/02/ipv6/</id>
+    <published>2016-08-02T14:59:48.000Z</published>
+    <updated>2016-08-02T14:59:48.000Z</updated>
+    <content type="html"><![CDATA[<p>title: ipv6</p>
+<p>date: 2016-08-02 22:49:47</p>
+<p>tags:</p>
+<pre><code>-<span class="ruby"> ipv6
+</span>
+-<span class="ruby"> c++
+</span>
+-<span class="ruby"> game</span>
+</code></pre><h2 id="categories:_c++">categories: c++</h2><h1 id="客户端程序兼容IPV6和IPV4通信">客户端程序兼容IPV6和IPV4通信</h1><h2 id="项目背景">项目背景</h2><blockquote>
+<p>最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能满足审核需求。</p>
+<p>此次升级对于整个项目来说改动不大，只需要改写客户端的底层socket连接即可，不需要对服务端进行更改，服务端还是继续沿用ipv4的通讯</p>
+</blockquote>
+<h2 id="IPV6环境搭建">IPV6环境搭建</h2><p>硬件设备：一台可接入有线宽带的MAC电脑,一部iphone</p>
+<ul>
+<li>mac电脑连入有线宽带</li>
+<li>通过Mac的共享网络共享一个IPv6的无线网，跟已往创建方式不同的是进入“共享”时需要按住Option键，不然Create NAT64 Network的选项不会出现</li>
+<li>iPhone连接上分享出来的热点即可</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：需要将iPhone的蜂窝网络数据关掉，以保证只有通过WiFi在连接网络</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现">代码实现</h2><p><em>连接参数：不要使用硬编码的IPv4的地址，取而代之应该使用域名</em></p>
+<p><strong>IPV6_Client_Example.c:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sockfd, len;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buffer[BUFFER_LENGTH + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">struct</span> addrinfo hints, *res = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(&amp;hints, <span class="number">0x00</span>, <span class="keyword">sizeof</span>(hints));</span><br><span class="line">hints.ai_flags = AI_NUMERICSERV;</span><br><span class="line">hints.ai_family = AF_UNSPEC;</span><br><span class="line">hints.ai_socktype = SOCK_STREAM;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* getaddrinfo: 通过域名、端口自动获取连接参数和连接类型,可兼容IPV4和IPV6,取代原有的gethostbyname*/</span></span><br><span class="line"><span class="keyword">int</span> rc = getaddrinfo(<span class="string">"testipv6.shixbo.com"</span>,<span class="string">"9000"</span>, &amp;hints, &amp;res);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (rc != <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">   perror(<span class="string">"getaddrinfo error"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建一个 socket 用于 tcp 通信 */</span></span><br><span class="line"><span class="keyword">if</span> ((sockfd = socket(res-&gt;ai_family, res-&gt;ai_socktype, res-&gt;ai_protocol)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">   perror(<span class="string">"初始化Socket失败"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"socket created\n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (rc != <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"rc=%d\n"</span>, rc);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( res-&gt;ai_family == AF_INET ) &#123;</span><br><span class="line">   <span class="keyword">struct</span> sockaddr_in m_BindLoaclAddr;</span><br><span class="line">   <span class="built_in">memset</span>(&amp;m_BindLoaclAddr, <span class="number">0</span>, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">   m_BindLoaclAddr.sin_family       = AF_INET;</span><br><span class="line">   m_BindLoaclAddr.sin_addr.s_addr  = INADDR_ANY;</span><br><span class="line">   m_BindLoaclAddr.sin_port         = htons(<span class="number">0</span>);</span><br><span class="line">   rc = bind(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;m_BindLoaclAddr, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (res-&gt;ai_family == AF_INET6) &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">struct</span> sockaddr_in6 m_BindLoaclAddr;</span><br><span class="line">   <span class="built_in">memset</span>(&amp;m_BindLoaclAddr, <span class="number">0</span>, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">   m_BindLoaclAddr.sin6_family       = AF_INET6;</span><br><span class="line">   m_BindLoaclAddr.sin6_addr         = in6addr_any;</span><br><span class="line">   m_BindLoaclAddr.sin6_port         = htons(<span class="number">0</span>);</span><br><span class="line">   rc = bind(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;m_BindLoaclAddr, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 连接服务器 */</span></span><br><span class="line"><span class="keyword">if</span> (connect(sockfd, res-&gt;ai_addr, res-&gt;ai_addrlen) != <span class="number">0</span>) &#123;</span><br><span class="line">   perror(<span class="string">"连接服务器失败"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"server connected/n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 接收对方发过来的消息，最多接收 MAXBUF 个字节 */</span></span><br><span class="line"><span class="built_in">memset</span>(buffer, <span class="number">0</span>, BUFFER_LENGTH + <span class="number">1</span>);</span><br><span class="line"><span class="comment">/* 接收服务器来的消息 */</span></span><br><span class="line">len = recv(sockfd, buffer, BUFFER_LENGTH, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (len &gt; <span class="number">0</span>)</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"接收消息成功:'%s'，共%d个字节的数据/n"</span>, buffer, len);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   perror(<span class="string">"消息接收失败/n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(buffer, <span class="number">0</span>, BUFFER_LENGTH + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">strcpy</span>(buffer, <span class="string">"这是客户端发给服务器端的消息/n"</span>);</span><br><span class="line"><span class="comment">/* 发消息给服务器 */</span></span><br><span class="line">len = send(sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (len &lt; <span class="number">0</span>)</span><br><span class="line">   perror(<span class="string">"消息'%s'发送失败！"</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"消息'%s'发送成功，共发送了%d个字节！/n"</span>,</span><br><span class="line">          buffer, len);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 关闭连接 */</span></span><br><span class="line">close(sockfd);</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>title: ipv6</p>
+<p>date: 2016-08-02 22:49:47</p>
+<p>tags:</p>
+<pre><code>-<span class="ruby"> ipv6
+</span>
+-<span class="ruby"> c++
+</spa]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Cmd Markdown]]></title>

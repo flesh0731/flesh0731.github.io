@@ -39,15 +39,46 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="终于能搭建自己的博客，好开森！">
-<meta property="og:type" content="website">
+<meta name="description" content="title: ipv6
+date: 2016-08-02 22:49:47
+tags:
+- ipv6
+
+- c++
+
+- game
+categories: c++客户端程序兼容IPV6和IPV4通信项目背景
+最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能满足审核需求。
+此次升级对于整个项目来说改动不大，只需要改写客户端的底层socket连接即可">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Bobo’s Notes">
-<meta property="og:url" content="http://blog.shixbo.com/index.html">
+<meta property="og:url" content="http://blog.shixbo.com/2016/08/02/ipv6/index.html">
 <meta property="og:site_name" content="Bobo’s Notes">
-<meta property="og:description" content="终于能搭建自己的博客，好开森！">
+<meta property="og:description" content="title: ipv6
+date: 2016-08-02 22:49:47
+tags:
+- ipv6
+
+- c++
+
+- game
+categories: c++客户端程序兼容IPV6和IPV4通信项目背景
+最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能满足审核需求。
+此次升级对于整个项目来说改动不大，只需要改写客户端的底层socket连接即可">
+<meta property="og:updated_time" content="2016-08-02T14:59:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bobo’s Notes">
-<meta name="twitter:description" content="终于能搭建自己的博客，好开森！">
+<meta name="twitter:description" content="title: ipv6
+date: 2016-08-02 22:49:47
+tags:
+- ipv6
+
+- c++
+
+- game
+categories: c++客户端程序兼容IPV6和IPV4通信项目背景
+最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能满足审核需求。
+此次升级对于整个项目来说改动不大，只需要改写客户端的底层socket连接即可">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +88,7 @@
   };
 </script>
 
-    <title> Bobo’s Notes </title>
+    <title>  // Bobo’s Notes </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -73,9 +104,7 @@
 
 
 
-<div class="container one-column 
-   page-home 
-">
+<div class="container one-column page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
         <div class="header-inner"><h1 class="site-meta">
@@ -167,9 +196,9 @@
         <div class="main-inner">
             <div id="content" class="content">
                 
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
@@ -180,9 +209,7 @@
           
           
             
-              <a class="post-title-link" href="/2016/08/02/ipv6/" itemprop="url">
-                未命名
-              </a>
+              
             
           
         </h1>
@@ -217,8 +244,7 @@
       
 
       
-        
-          <span itemprop="articleBody"><p>title: ipv6</p>
+        <span itemprop="articleBody"><p>title: ipv6</p>
 <p>date: 2016-08-02 22:49:47</p>
 <p>tags:</p>
 <pre><code>-<span class="ruby"> ipv6
@@ -241,7 +267,6 @@
 <p><strong>IPV6_Client_Example.c:</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sockfd, len;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buffer[BUFFER_LENGTH + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">struct</span> addrinfo hints, *res = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(&amp;hints, <span class="number">0x00</span>, <span class="keyword">sizeof</span>(hints));</span><br><span class="line">hints.ai_flags = AI_NUMERICSERV;</span><br><span class="line">hints.ai_family = AF_UNSPEC;</span><br><span class="line">hints.ai_socktype = SOCK_STREAM;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* getaddrinfo: 通过域名、端口自动获取连接参数和连接类型,可兼容IPV4和IPV6,取代原有的gethostbyname*/</span></span><br><span class="line"><span class="keyword">int</span> rc = getaddrinfo(<span class="string">"testipv6.shixbo.com"</span>,<span class="string">"9000"</span>, &amp;hints, &amp;res);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (rc != <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">   perror(<span class="string">"getaddrinfo error"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建一个 socket 用于 tcp 通信 */</span></span><br><span class="line"><span class="keyword">if</span> ((sockfd = socket(res-&gt;ai_family, res-&gt;ai_socktype, res-&gt;ai_protocol)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">   perror(<span class="string">"初始化Socket失败"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"socket created\n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (rc != <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"rc=%d\n"</span>, rc);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( res-&gt;ai_family == AF_INET ) &#123;</span><br><span class="line">   <span class="keyword">struct</span> sockaddr_in m_BindLoaclAddr;</span><br><span class="line">   <span class="built_in">memset</span>(&amp;m_BindLoaclAddr, <span class="number">0</span>, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">   m_BindLoaclAddr.sin_family       = AF_INET;</span><br><span class="line">   m_BindLoaclAddr.sin_addr.s_addr  = INADDR_ANY;</span><br><span class="line">   m_BindLoaclAddr.sin_port         = htons(<span class="number">0</span>);</span><br><span class="line">   rc = bind(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;m_BindLoaclAddr, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (res-&gt;ai_family == AF_INET6) &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">struct</span> sockaddr_in6 m_BindLoaclAddr;</span><br><span class="line">   <span class="built_in">memset</span>(&amp;m_BindLoaclAddr, <span class="number">0</span>, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">   m_BindLoaclAddr.sin6_family       = AF_INET6;</span><br><span class="line">   m_BindLoaclAddr.sin6_addr         = in6addr_any;</span><br><span class="line">   m_BindLoaclAddr.sin6_port         = htons(<span class="number">0</span>);</span><br><span class="line">   rc = bind(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;m_BindLoaclAddr, <span class="keyword">sizeof</span>(m_BindLoaclAddr));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 连接服务器 */</span></span><br><span class="line"><span class="keyword">if</span> (connect(sockfd, res-&gt;ai_addr, res-&gt;ai_addrlen) != <span class="number">0</span>) &#123;</span><br><span class="line">   perror(<span class="string">"连接服务器失败"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"server connected/n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 接收对方发过来的消息，最多接收 MAXBUF 个字节 */</span></span><br><span class="line"><span class="built_in">memset</span>(buffer, <span class="number">0</span>, BUFFER_LENGTH + <span class="number">1</span>);</span><br><span class="line"><span class="comment">/* 接收服务器来的消息 */</span></span><br><span class="line">len = recv(sockfd, buffer, BUFFER_LENGTH, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (len &gt; <span class="number">0</span>)</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"接收消息成功:'%s'，共%d个字节的数据/n"</span>, buffer, len);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   perror(<span class="string">"消息接收失败/n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(buffer, <span class="number">0</span>, BUFFER_LENGTH + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">strcpy</span>(buffer, <span class="string">"这是客户端发给服务器端的消息/n"</span>);</span><br><span class="line"><span class="comment">/* 发消息给服务器 */</span></span><br><span class="line">len = send(sockfd, buffer, <span class="built_in">strlen</span>(buffer), <span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (len &lt; <span class="number">0</span>)</span><br><span class="line">   perror(<span class="string">"消息'%s'发送失败！"</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"消息'%s'发送成功，共发送了%d个字节！/n"</span>,</span><br><span class="line">          buffer, len);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 关闭连接 */</span></span><br><span class="line">close(sockfd);</span><br></pre></td></tr></table></figure>
 </span>
-        
       
     </div>
 
@@ -249,208 +274,44 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
             
-              <a class="post-title-link" href="/2015/09/13/Cmd-Markdown/" itemprop="url">
-                Cmd Markdown
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-13T20:51:39+08:00" content="2015-09-13">
-            2015-09-13
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/09/13/Cmd-Markdown/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/13/Cmd-Markdown/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="文章来自_Cmd_Markdown_编辑阅读器">文章来自 <a href="https://www.zybuluo.com/mdeditor">Cmd Markdown 编辑阅读器</a></h1><hr>
-<p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
-<blockquote>
-<ul>
-<li>整理知识，学习笔记</li>
-<li>发布日记，杂文，所见所想</li>
-<li>撰写发布技术文稿（代码支持）</li>
-<li>撰写发布学术论文（LaTeX 公式支持）</li>
-</ul>
-</blockquote>
-<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
-<p>除了您现在看到的这个 Cmd Markdown 在线版本，您还可以前往以下网址下载：</p>
-<h3 id="Windows/Mac/Linux_全平台客户端"><a href="https://www.zybuluo.com/cmd/">Windows/Mac/Linux 全平台客户端</a></h3><blockquote>
-<p>请保留此份 Cmd Markdown 的欢迎稿兼使用说明，如需撰写新稿件，点击顶部工具栏右侧的 <i class="icon-file"></i> <strong>新文稿</strong> 或者使用快捷键 <code>Ctrl+Alt+N</code>。</p>
-<h2 id="<!-_more_->">
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/13/Cmd-Markdown/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+          <div class="post-nav-next post-nav-item">
             
-              <a class="post-title-link" href="/2015/09/09/hello-world/" itemprop="url">
-                Hello World
-              </a>
+              <a href="/2015/09/13/Cmd-Markdown/" rel="next">Cmd Markdown</a>
             
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-09T07:56:29+08:00" content="2015-09-09">
-            2015-09-09
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/09/09/hello-world/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/09/hello-world/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/09/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
 
             </div>
 
             
 
+            
+              <div class="comments" id="comments">
+                
+                  <div class="ds-thread" data-thread-key="2016/08/02/ipv6/"
+                       data-title="" data-url="http://blog.shixbo.com/2016/08/02/ipv6/">
+                  </div>
+                
+              </div>
             
         </div>
 
@@ -467,6 +328,15 @@
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
       
 
       <section class="site-overview">
@@ -535,6 +405,17 @@
       </section>
 
       
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#categories:_c++"><span class="nav-number">1.</span> <span class="nav-text">categories: c++</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端程序兼容IPV6和IPV4通信"><span class="nav-number"></span> <span class="nav-text">客户端程序兼容IPV6和IPV4通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目背景"><span class="nav-number">1.</span> <span class="nav-text">项目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPV6环境搭建"><span class="nav-number">2.</span> <span class="nav-text">IPV6环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
 
     </div>
   </aside>
@@ -578,7 +459,7 @@
   
   
   
-  
+    
 
   
     
@@ -601,8 +482,8 @@
   	<script src="/js/hook-duoshuo.js"></script>
   
 
+    
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
@@ -621,6 +502,165 @@
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
 
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -632,31 +672,6 @@
 
 
 
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"shixbo"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-    
-     
-  	<script src="/js/ua-parser.min.js"></script>
-  	<script src="/js/hook-duoshuo.js"></script>
-  
-
-  
 
 
 
@@ -671,6 +686,36 @@
             effect: "fadeIn"
         });
     });
+</script>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 </body>
 </html>
