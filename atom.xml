@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.shixbo.com/"/>
-  <updated>2016-08-02T15:05:27.000Z</updated>
+  <updated>2016-08-02T15:12:20.000Z</updated>
   <id>http://blog.shixbo.com/</id>
   
   <author>
@@ -19,11 +19,12 @@
     <link href="http://blog.shixbo.com/2016/08/02/ip%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%85%BC%E5%AE%B9IPV6%E5%92%8CIPV4%E9%80%9A%E4%BF%A1v6/"/>
     <id>http://blog.shixbo.com/2016/08/02/ip客户端程序兼容IPV6和IPV4通信v6/</id>
     <published>2016-08-02T14:49:47.000Z</published>
-    <updated>2016-08-02T15:05:27.000Z</updated>
+    <updated>2016-08-02T15:12:20.000Z</updated>
     <content type="html"><![CDATA[<h1 id="客户端程序兼容IPV6和IPV4通信">客户端程序兼容IPV6和IPV4通信</h1><h2 id="项目背景">项目背景</h2><blockquote>
 <p>最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能满足审核需求。</p>
 <p>此次升级对于整个项目来说改动不大，只需要改写客户端的底层socket连接即可，不需要对服务端进行更改，服务端还是继续沿用ipv4的通讯</p>
 </blockquote>
+<a id="more"></a> 
 <h2 id="IPV6环境搭建">IPV6环境搭建</h2><p>硬件设备：一台可接入有线宽带的MAC电脑,一部iphone</p>
 <ul>
 <li>mac电脑连入有线宽带</li>
@@ -37,7 +38,10 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="客户端程序兼容IPV6和IPV4通信">客户端程序兼容IPV6和IPV4通信</h1><h2 id="项目背景">项目背景</h2><blockquote>
-<p>最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能]]>
+<p>最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能满足审核需求。</p>
+<p>此次升级对于整个项目来说改动不大，只需要改写客户端的底层socket连接即可，不需要对服务端进行更改，服务端还是继续沿用ipv4的通讯</p>
+</blockquote>]]>
+    
     </summary>
     
       <category term="c++" scheme="http://blog.shixbo.com/tags/c/"/>
