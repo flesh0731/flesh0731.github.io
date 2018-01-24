@@ -39,15 +39,34 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="终于能搭建自己的博客，好开森！">
-<meta property="og:type" content="website">
+<meta name="description" content="title: skynet源码赏析date: 2018-01-25 00:50:38tags:
+- skynet
+- 游戏服务器
+- c lua
+写在最前面skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Bobo’s Notes">
-<meta property="og:url" content="http://blog.shixbo.com/index.html">
+<meta property="og:url" content="http://blog.shixbo.com/2018/01/25/skynet源码赏析/index.html">
 <meta property="og:site_name" content="Bobo’s Notes">
-<meta property="og:description" content="终于能搭建自己的博客，好开森！">
+<meta property="og:description" content="title: skynet源码赏析date: 2018-01-25 00:50:38tags:
+- skynet
+- 游戏服务器
+- c lua
+写在最前面skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日">
+<meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/002skynet_message_transfer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/001skynet_folder_architecture.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/005socket_listen.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/006socket_accept.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/007socket_recv.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/008socket_send.png">
+<meta property="og:updated_time" content="2018-01-24T16:57:53.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bobo’s Notes">
-<meta name="twitter:description" content="终于能搭建自己的博客，好开森！">
+<meta name="twitter:description" content="title: skynet源码赏析date: 2018-01-25 00:50:38tags:
+- skynet
+- 游戏服务器
+- c lua
+写在最前面skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +76,7 @@
   };
 </script>
 
-    <title> Bobo’s Notes </title>
+    <title>  // Bobo’s Notes </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -73,9 +92,7 @@
 
 
 
-<div class="container one-column 
-   page-home 
-">
+<div class="container one-column page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
         <div class="header-inner"><h1 class="site-meta">
@@ -167,9 +184,9 @@
         <div class="main-inner">
             <div id="content" class="content">
                 
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
@@ -180,9 +197,7 @@
           
           
             
-              <a class="post-title-link" href="/2018/01/25/skynet源码赏析/" itemprop="url">
-                未命名
-              </a>
+              
             
           
         </h1>
@@ -217,8 +232,7 @@
       
 
       
-        
-          <span itemprop="articleBody"><p>title: skynet源码赏析<br>date: 2018-01-25 00:50:38<br>tags:</p>
+        <span itemprop="articleBody"><p>title: skynet源码赏析<br>date: 2018-01-25 00:50:38<br>tags:</p>
 <pre><code>-<span class="ruby"> skynet
 </span>-<span class="ruby"> 游戏服务器
 </span>-<span class="ruby"> c lua</span>
@@ -1114,7 +1128,6 @@ older kernels.
 <h4 id="skynet的几个基本服务">skynet的几个基本服务</h4><p>我们可以在skynet/service/bootstrap.lua里看到skynet的基本lua服务启动流程，这里不再赘述。</p>
 <h4 id="集群">集群</h4><p>这一部分，云风大侠已经说的很清楚了，这里就不敢班门弄斧。<br>如何使用查看<a href="https://github.com/cloudwu/skynet/wiki/Cluster" target="_blank" rel="external">Cluster</a><br>Cluster设计请查看<a href="http://blog.codingnow.com/2017/03/skynet_cluster.html" target="_blank" rel="external">skynet cluster 模块的设计与编码协议</a></p>
 </span>
-        
       
     </div>
 
@@ -1122,295 +1135,44 @@ older kernels.
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
             
-              <a class="post-title-link" href="/2016/08/02/ip客户端程序兼容IPV6和IPV4通信v6/" itemprop="url">
-                客户端程序兼容IPV6和IPV4通信
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-08-02T22:49:47+08:00" content="2016-08-02">
-            2016-08-02
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/08/02/ip客户端程序兼容IPV6和IPV4通信v6/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/ip客户端程序兼容IPV6和IPV4通信v6/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="客户端程序兼容IPV6和IPV4通信">客户端程序兼容IPV6和IPV4通信</h1><h2 id="项目背景">项目背景</h2><blockquote>
-<p>最近由于苹果的审核需要app支持ipv6的协议，需要对项目进行升级，老版本的ipv4通讯协议已经不能满足审核需求。</p>
-<p>此次升级对于整个项目来说改动不大，只需要改写客户端的底层socket连接即可，不需要对服务端进行更改，服务端还是继续沿用ipv4的通讯</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/02/ip客户端程序兼容IPV6和IPV4通信v6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+          <div class="post-nav-next post-nav-item">
             
-              <a class="post-title-link" href="/2015/09/13/Cmd-Markdown/" itemprop="url">
-                Cmd Markdown
-              </a>
+              <a href="/2016/08/02/ip客户端程序兼容IPV6和IPV4通信v6/" rel="next">客户端程序兼容IPV6和IPV4通信</a>
             
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-13T20:51:39+08:00" content="2015-09-13">
-            2015-09-13
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/09/13/Cmd-Markdown/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/13/Cmd-Markdown/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="文章来自_Cmd_Markdown_编辑阅读器">文章来自 <a href="https://www.zybuluo.com/mdeditor">Cmd Markdown 编辑阅读器</a></h1><hr>
-<p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
-<blockquote>
-<ul>
-<li>整理知识，学习笔记</li>
-<li>发布日记，杂文，所见所想</li>
-<li>撰写发布技术文稿（代码支持）</li>
-<li>撰写发布学术论文（LaTeX 公式支持）</li>
-</ul>
-</blockquote>
-<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
-<p>除了您现在看到的这个 Cmd Markdown 在线版本，您还可以前往以下网址下载：</p>
-<h3 id="Windows/Mac/Linux_全平台客户端"><a href="https://www.zybuluo.com/cmd/">Windows/Mac/Linux 全平台客户端</a></h3><blockquote>
-<p>请保留此份 Cmd Markdown 的欢迎稿兼使用说明，如需撰写新稿件，点击顶部工具栏右侧的 <i class="icon-file"></i> <strong>新文稿</strong> 或者使用快捷键 <code>Ctrl+Alt+N</code>。</p>
-<h2 id="<!-_more_->">
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/13/Cmd-Markdown/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/09/hello-world/" itemprop="url">
-                Hello World
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-09T07:56:29+08:00" content="2015-09-09">
-            2015-09-09
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/09/09/hello-world/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/09/hello-world/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/09/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
+  </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
 
             </div>
 
             
 
+            
+              <div class="comments" id="comments">
+                
+                  <div class="ds-thread" data-thread-key="2018/01/25/skynet源码赏析/"
+                       data-title="" data-url="http://blog.shixbo.com/2018/01/25/skynet源码赏析/">
+                  </div>
+                
+              </div>
             
         </div>
 
@@ -1427,6 +1189,15 @@ older kernels.
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
       
 
       <section class="site-overview">
@@ -1495,6 +1266,17 @@ older kernels.
       </section>
 
       
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于skynet，需要屡清楚的几个问题"><span class="nav-number">2.</span> <span class="nav-text">对于skynet，需要屡清楚的几个问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Overview"><span class="nav-number">3.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skynet基本结构"><span class="nav-number">4.</span> <span class="nav-text">skynet基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skynet的几个基本服务"><span class="nav-number">5.</span> <span class="nav-text">skynet的几个基本服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集群"><span class="nav-number">6.</span> <span class="nav-text">集群</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
 
     </div>
   </aside>
@@ -1538,7 +1320,7 @@ older kernels.
   
   
   
-  
+    
 
   
     
@@ -1561,8 +1343,8 @@ older kernels.
   	<script src="/js/hook-duoshuo.js"></script>
   
 
+    
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
@@ -1581,6 +1363,165 @@ older kernels.
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
 
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -1592,31 +1533,6 @@ older kernels.
 
 
 
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"shixbo"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-    
-     
-  	<script src="/js/ua-parser.min.js"></script>
-  	<script src="/js/hook-duoshuo.js"></script>
-  
-
-  
 
 
 
@@ -1631,6 +1547,36 @@ older kernels.
             effect: "fadeIn"
         });
     });
+</script>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 </body>
 </html>
