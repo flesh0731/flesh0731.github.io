@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.shixbo.com/"/>
-  <updated>2018-01-24T16:57:53.727Z</updated>
+  <updated>2018-01-24T17:06:34.508Z</updated>
   <id>http://blog.shixbo.com/</id>
   
   <author>
@@ -15,16 +15,12 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title><![CDATA[skynet源码赏析]]></title>
     <link href="http://blog.shixbo.com/2018/01/25/skynet%E6%BA%90%E7%A0%81%E8%B5%8F%E6%9E%90/"/>
     <id>http://blog.shixbo.com/2018/01/25/skynet源码赏析/</id>
-    <published>2018-01-24T16:57:53.789Z</published>
-    <updated>2018-01-24T16:57:53.727Z</updated>
-    <content type="html"><![CDATA[<p>title: skynet源码赏析<br>date: 2018-01-25 00:50:38<br>tags:</p>
-<pre><code>-<span class="ruby"> skynet
-</span>-<span class="ruby"> 游戏服务器
-</span>-<span class="ruby"> c lua</span>
-</code></pre><h4 id="写在最前面">写在最前面</h4><p>skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日后使用。本文旨在捋清skynet框架的结构和主要流程，并不会涉及skynet的方方面面，一些论述，我贴上了一些源码加以论证，并在引用的源码里加入了一些注释。对于一些概念，我也本着严谨的原则，尽可能注明了引证来源的出处，引证自维基百科的内容，基本上是没有争议的词条。由于本人水平有限，如果发现文中内容有错误的地方，或者写的不好的地方，欢迎大家批评指正。</p>
+    <published>2018-01-24T16:50:38.000Z</published>
+    <updated>2018-01-24T17:06:34.508Z</updated>
+    <content type="html"><![CDATA[<h4 id="写在最前面">写在最前面</h4><p>skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日后使用。本文旨在捋清skynet框架的结构和主要流程，并不会涉及skynet的方方面面，一些论述，我贴上了一些源码加以论证，并在引用的源码里加入了一些注释。对于一些概念，我也本着严谨的原则，尽可能注明了引证来源的出处，引证自维基百科的内容，基本上是没有争议的词条。由于本人水平有限，如果发现文中内容有错误的地方，或者写的不好的地方，欢迎大家批评指正。</p>
 <h4 id="对于skynet，需要屡清楚的几个问题">对于skynet，需要屡清楚的几个问题</h4><ul>
 <li>skynet本质上解决什么问题？</li>
 <li>skynet有哪些基本的数据结构？</li>
@@ -38,6 +34,7 @@
 <li>skynet有哪些基本服务，他们的作用分别是什么？</li>
 <li>skynet集群机制</li>
 </ul>
+<a id="more"></a> 
 <h4 id="Overview">Overview</h4><p>对于skynet的概述，建议大家先阅读云风大侠的《<a href="http://blog.codingnow.com/2012/09/the_design_of_skynet.html" target="_blank" rel="external">skynet设计综述</a>》。<br>skynet本质是什么？它为我们提供了什么机制？如何正确使用它？我们希望自己写的不同的业务逻辑，独立运行在不同的上下文环境中，并且能够通过某种方式，相互协作，最终共同服务于我们的玩家。skynet则为我们提供了这种环境：</p>
 <ul>
 <li>我们编写好的c文件，在编译成so库以后，在某个时机，调用该so库api的句柄，会被加载到一个modules列表中，一般这样的模块会被要求定义4种接口create，init，signal和release</li>
@@ -917,11 +914,30 @@ older kernels.
 <h4 id="集群">集群</h4><p>这一部分，云风大侠已经说的很清楚了，这里就不敢班门弄斧。<br>如何使用查看<a href="https://github.com/cloudwu/skynet/wiki/Cluster" target="_blank" rel="external">Cluster</a><br>Cluster设计请查看<a href="http://blog.codingnow.com/2017/03/skynet_cluster.html" target="_blank" rel="external">skynet cluster 模块的设计与编码协议</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>title: skynet源码赏析<br>date: 2018-01-25 00:50:38<br>tags:</p>
-<pre><code>-<span class="ruby"> skynet
-</span>-<span class="ruby"> 游戏服务器
-</sp]]>
+    <![CDATA[<h4 id="写在最前面">写在最前面</h4><p>skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日后使用。本文旨在捋清skynet框架的结构和主要流程，并不会涉及skynet的方方面面，一些论述，我贴上了一些源码加以论证，并在引用的源码里加入了一些注释。对于一些概念，我也本着严谨的原则，尽可能注明了引证来源的出处，引证自维基百科的内容，基本上是没有争议的词条。由于本人水平有限，如果发现文中内容有错误的地方，或者写的不好的地方，欢迎大家批评指正。</p>
+<h4 id="对于skynet，需要屡清楚的几个问题">对于skynet，需要屡清楚的几个问题</h4><ul>
+<li>skynet本质上解决什么问题？</li>
+<li>skynet有哪些基本的数据结构？</li>
+<li>skynet有几类线程，他们分别的作用是什么？</li>
+<li>skynet如何启动一个c服务？</li>
+<li>skynet消息调度机制是怎样的？</li>
+<li>skynet如何启动一个lua服务？</li>
+<li>skynet的lua层消息派发机制是怎样的？</li>
+<li>timer是如何产生消息的？他的结构和流程是怎样的？</li>
+<li>网络模块是如何产生消息的？他的结构和流程是怎样的？</li>
+<li>skynet有哪些基本服务，他们的作用分别是什么？</li>
+<li>skynet集群机制</li>
+</ul>]]>
+    
     </summary>
+    
+      <category term="lua" scheme="http://blog.shixbo.com/tags/lua/"/>
+    
+      <category term="skynet" scheme="http://blog.shixbo.com/tags/skynet/"/>
+    
+      <category term="游戏服务器" scheme="http://blog.shixbo.com/tags/%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="c++" scheme="http://blog.shixbo.com/categories/c/"/>
     
   </entry>
   
