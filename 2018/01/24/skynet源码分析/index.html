@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="lua,skynet,游戏服务器," />
+  <meta name="keywords" content="Hexo,Html,NexT," />
 
 
 
@@ -41,8 +41,8 @@
 
 <meta name="description" content="写在最前面skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日后使用。本文旨在捋清skynet框架的结构和主要流程，并不会涉及skynet的方方面面，一些论述，我贴上了一些源码加以论证，并在引用的源码里加入了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="skynet源码赏析">
-<meta property="og:url" content="http://blog.shixbo.com/2018/01/25/skynet源码赏析/index.html">
+<meta property="og:title" content="skynet源码分析">
+<meta property="og:url" content="http://blog.shixbo.com/2018/01/24/skynet源码分析/index.html">
 <meta property="og:site_name" content="Bobo’s Notes">
 <meta property="og:description" content="写在最前面skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日后使用。本文旨在捋清skynet框架的结构和主要流程，并不会涉及skynet的方方面面，一些论述，我贴上了一些源码加以论证，并在引用的源码里加入了">
 <meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/002skynet_message_transfer.png">
@@ -51,9 +51,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/006socket_accept.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/007socket_recv.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Manistein/Photos/master/DailyUse/skynet_study/008socket_send.png">
-<meta property="og:updated_time" content="2018-01-24T17:06:34.508Z">
+<meta property="og:updated_time" content="2018-01-24T17:12:53.783Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="skynet源码赏析">
+<meta name="twitter:title" content="skynet源码分析">
 <meta name="twitter:description" content="写在最前面skynet是目前使用比较广泛的服务端框架，虽然目前网上资料众多，但是从自己的学习和使用经历来看，缺乏能够让自己系统了解该框架底层机制的资料，这段时间，趁着自己有时间，阅读了skynet底层的一些代码，现在将自己理解的部分总结并记录下来，以备日后使用。本文旨在捋清skynet框架的结构和主要流程，并不会涉及skynet的方方面面，一些论述，我贴上了一些源码加以论证，并在引用的源码里加入了">
 
 
@@ -64,7 +64,7 @@
   };
 </script>
 
-    <title> skynet源码赏析 // Bobo’s Notes </title>
+    <title> skynet源码分析 // Bobo’s Notes </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -185,7 +185,7 @@
           
           
             
-              skynet源码赏析
+              skynet源码分析
             
           
         </h1>
@@ -194,8 +194,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2018-01-25T00:50:38+08:00" content="2018-01-25">
-            2018-01-25
+          <time itemprop="dateCreated" datetime="2018-01-24T07:56:29+08:00" content="2018-01-24">
+            2018-01-24
           </time>
         </span>
 
@@ -203,7 +203,7 @@
           <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
 
               
               
@@ -216,8 +216,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2018/01/25/skynet源码赏析/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/25/skynet源码赏析/" itemprop="commentsCount"></span>
+              <a href="/2018/01/24/skynet源码分析/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/24/skynet源码分析/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -245,8 +245,7 @@
 <li>skynet有哪些基本服务，他们的作用分别是什么？</li>
 <li>skynet集群机制</li>
 </ul>
-<a id="more"></a> 
-<h4 id="Overview">Overview</h4><p>对于skynet的概述，建议大家先阅读云风大侠的《<a href="http://blog.codingnow.com/2012/09/the_design_of_skynet.html" target="_blank" rel="external">skynet设计综述</a>》。<br>skynet本质是什么？它为我们提供了什么机制？如何正确使用它？我们希望自己写的不同的业务逻辑，独立运行在不同的上下文环境中，并且能够通过某种方式，相互协作，最终共同服务于我们的玩家。skynet则为我们提供了这种环境：</p>
+<h2 id="<!-_more_->"><a id="more"></a> </h2><h4 id="Overview">Overview</h4><p>对于skynet的概述，建议大家先阅读云风大侠的《<a href="http://blog.codingnow.com/2012/09/the_design_of_skynet.html" target="_blank" rel="external">skynet设计综述</a>》。<br>skynet本质是什么？它为我们提供了什么机制？如何正确使用它？我们希望自己写的不同的业务逻辑，独立运行在不同的上下文环境中，并且能够通过某种方式，相互协作，最终共同服务于我们的玩家。skynet则为我们提供了这种环境：</p>
 <ul>
 <li>我们编写好的c文件，在编译成so库以后，在某个时机，调用该so库api的句柄，会被加载到一个modules列表中，一般这样的模块会被要求定义4种接口create，init，signal和release</li>
 <li>我们要创建一个新的，运行该业务逻辑的上下文环境时，则从modules列表中，找到对应的so库句柄，并且调用create接口，创建一个该类业务模块的数据实例，并且创建一个上下文环境（context），引用该类业务的接口和数据实例，该context会被存放在一个统一存放context的列表中，这种context被称之为服务</li>
@@ -1131,11 +1130,11 @@ older kernels.
       
         <div class="post-tags">
           
-            <a href="/tags/lua/" rel="tag">#lua</a>
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
           
-            <a href="/tags/skynet/" rel="tag">#skynet</a>
+            <a href="/tags/Html/" rel="tag">#Html</a>
           
-            <a href="/tags/游戏服务器/" rel="tag">#游戏服务器</a>
+            <a href="/tags/NexT/" rel="tag">#NexT</a>
           
         </div>
       
@@ -1174,8 +1173,8 @@ older kernels.
             
               <div class="comments" id="comments">
                 
-                  <div class="ds-thread" data-thread-key="2018/01/25/skynet源码赏析/"
-                       data-title="skynet源码赏析" data-url="http://blog.shixbo.com/2018/01/25/skynet源码赏析/">
+                  <div class="ds-thread" data-thread-key="2018/01/24/skynet源码分析/"
+                       data-title="skynet源码分析" data-url="http://blog.shixbo.com/2018/01/24/skynet源码分析/">
                   </div>
                 
               </div>
@@ -1229,7 +1228,7 @@ older kernels.
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -1277,7 +1276,7 @@ older kernels.
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于skynet，需要屡清楚的几个问题"><span class="nav-number">2.</span> <span class="nav-text">对于skynet，需要屡清楚的几个问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Overview"><span class="nav-number">3.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skynet基本结构"><span class="nav-number">4.</span> <span class="nav-text">skynet基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skynet的几个基本服务"><span class="nav-number">5.</span> <span class="nav-text">skynet的几个基本服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集群"><span class="nav-number">6.</span> <span class="nav-text">集群</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于skynet，需要屡清楚的几个问题"><span class="nav-number">2.</span> <span class="nav-text">对于skynet，需要屡清楚的几个问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#<!-_more_->"><span class="nav-number"></span> <span class="nav-text"> </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skynet基本结构"><span class="nav-number">2.</span> <span class="nav-text">skynet基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skynet的几个基本服务"><span class="nav-number">3.</span> <span class="nav-text">skynet的几个基本服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集群"><span class="nav-number">4.</span> <span class="nav-text">集群</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
